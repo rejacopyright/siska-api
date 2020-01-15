@@ -47,6 +47,12 @@ Route::group(["middleware" => "auth:admin-api"], function(){
   Route::post('sdm/user/update', 'sdm\user_c@update');
   Route::post('sdm/user/update_img', 'sdm\user_c@update_img');
   Route::post('sdm/user/delete', 'sdm\user_c@delete');
+  // SDM Pengajar
+  Route::get('pengajar', 'sdm\pengajar_c@pengajar');
+  Route::get('pengajar/select', 'sdm\pengajar_c@pengajar_select');
+  Route::post('pengajar/store', 'sdm\pengajar_c@store');
+  Route::post('pengajar/update', 'sdm\pengajar_c@update');
+  Route::post('pengajar/delete', 'sdm\pengajar_c@delete');
   // SISWA
   Route::get('siswa/nis', 'siswa\siswa_c@nis');
   Route::get('siswa/detail/{siswa_id}', 'siswa\siswa_c@detail');
@@ -96,12 +102,20 @@ Route::group(["middleware" => "auth:admin-api"], function(){
   Route::get('perpustakaan/pinjam', 'perpustakaan\perpustakaan_c@perpustakaan_pinjam');
   Route::post('perpustakaan/pinjam/store', 'perpustakaan\perpustakaan_c@perpustakaan_pinjam_store');
   Route::post('perpustakaan/pinjam/update', 'perpustakaan\perpustakaan_c@perpustakaan_pinjam_update');
+  Route::post('perpustakaan/pinjam/extend', 'perpustakaan\perpustakaan_c@perpustakaan_pinjam_extend');
+  Route::post('perpustakaan/pinjam/extend/undo', 'perpustakaan\perpustakaan_c@perpustakaan_pinjam_extend_undo');
 
   Route::get('bulan', 'indonesia_c@bulan');
   Route::get('lokasi', 'indonesia_c@lokasi');
   Route::get('provinsi', 'indonesia_c@provinsi');
   Route::get('admin/check/username', 'admin\auth_c@check_username');
   Route::get('admin/auth', 'admin\auth_c@auth');
+});
+Route::group(["middleware" => "auth:siswa-api", "prefix" => "siswa"], function(){
+  Route::get('profile/{siswa_id}', 'user\profile_c@profile');
+  Route::get('materi/{kelas_id}', 'user\materi_c@materi');
+  Route::get('kurikulum/mapel/select', 'kurikulum\mapel_c@mapel_select');
+  Route::get('lokasi', 'indonesia_c@lokasi');
 });
 Route::post('admin/login', 'admin\auth_c@login');
 Route::get('admin/logout', 'admin\auth_c@logout');

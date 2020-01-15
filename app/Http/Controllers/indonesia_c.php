@@ -11,7 +11,7 @@ use App\indonesia\provinsi;
 class indonesia_c extends Controller
 {
   function lokasi(Request $data){
-    $q = explode(' ', str_replace(',', ' ', $data->q));
+    $q = explode(' ', str_replace(',', '', $data->q));
     $query = function($item) use($q){
       for ($i=0; $i < count($q); $i++) {
         $item->orWhere('nama', 'like', '%'.$q[$i].'%');
@@ -41,6 +41,7 @@ class indonesia_c extends Controller
       $i['provinsi'] = ucwords(strtolower($i->nama));
       return $i->only('provinsi');
     });
+    // $result = $result->merge($desa)->merge($kecamatan)->merge($kota)->merge($provinsi);
     $result = $result->merge($provinsi)->merge($kota)->merge($kecamatan)->merge($desa);
     return $result->take($limit);
   }

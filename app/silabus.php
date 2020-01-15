@@ -18,4 +18,8 @@ class silabus extends Model
   function semester(){
     return $this->belongsTo('App\semester', 'semester_id', 'semester_id');
   }
+  // CHILD
+  function rpp(){
+    return $this->hasMany('App\rpp', 'silabus_id', 'silabus_id');
+  }
 }

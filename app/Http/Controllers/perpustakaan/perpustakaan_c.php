@@ -255,6 +255,7 @@ class perpustakaan_c extends Controller
     $pinjam = $page->map(function($i){
       $i->siswa;
       $i->buku;
+      $i['durasi'] = setting::first()->durasi ?? null;
       return $i;
     });
     return compact('pinjam', 'page');
@@ -280,6 +281,24 @@ class perpustakaan_c extends Controller
     if ($data->perpustakaan_id) { $pinjam->perpustakaan_id = $data->perpustakaan_id; }
     $pinjam->keterangan = $data->keterangan;
     $pinjam->status = $data->status ?? $pinjam->status;
+    $pinjam->save();
+    return ['update' => $pinjam, 'pinjam' => $this->perpustakaan_pinjam($data)['pinjam']];
+  }
+  function perpustakaan_pinjam_extend(Request $data){
+    $pinjam = pinjam::where('pinjam_id', $data->pinjam_id)->first();
+    $extend = new Carbon($data->tgl_dikembalikan);
+    if ($extend->isAfter($pinjam->tgl_dikembalikan)) {
+      $pinjam->tgl_dikembalikan = $data->tgl_dikembalikan;
+      $pinjam->status = 6;
+      $pinjam->save();
+    }
+    return ['update' => $pinjam, 'pinjam' => $this->perpustakaan_pinjam($data)['pinjam']];
+  }
+  function perpustakaan_pinjam_extend_undo(Request $data){
+    $pinjam = pinjam::where('pinjam_id', $data->pinjam_id)->first();
+    $extend = new Carbon($data->tgl_dikembalikan);
+    $pinjam->tgl_dikembalikan = $data->tgl_dikembalikan;
+    $pinjam->status = 2;
     $pinjam->save();
     return ['update' => $pinjam, 'pinjam' => $this->perpustakaan_pinjam($data)['pinjam']];
   }
