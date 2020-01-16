@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\sdm;
+namespace App\Http\Controllers\mapel;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -39,8 +39,6 @@ class pengajar_c extends Controller
     $pengajar->admin_id = $data->admin_id;
     $pengajar->kelas_id = $data->kelas_id;
     $pengajar->mapel_id = $data->mapel_id;
-    $pengajar->tgl_daftar = $data->tgl_daftar;
-    $pengajar->expired = $data->expired;
     $pengajar->status = $data->status;
     $pengajar->save();
     return ['update' => $pengajar, 'pengajar' => $this->pengajar($data)['pengajar']];
@@ -50,8 +48,6 @@ class pengajar_c extends Controller
     $pengajar->admin_id = $data->admin_id;
     $pengajar->kelas_id = $data->kelas_id;
     $pengajar->mapel_id = $data->mapel_id;
-    $pengajar->tgl_daftar = $data->tgl_daftar;
-    $pengajar->expired = $data->expired;
     $pengajar->status = $data->status ?? 0;
     $pengajar->save();
     return ['update' => $pengajar, 'pengajar' => $this->pengajar($data)['pengajar']];

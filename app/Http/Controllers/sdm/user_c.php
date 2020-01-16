@@ -62,6 +62,8 @@ class user_c extends Controller
     $user->rek_no = $data->rek_no;
     $user->rek_nama = $data->rek_nama;
     $user->tgl = now();
+    $user->tgl_daftar = $data->tgl_daftar;
+    $user->expired = $data->expired;
     $user->status = 1;
     if (!$exist) {
       $user->save();
@@ -87,6 +89,8 @@ class user_c extends Controller
     if ($data->rek_bank) { $user->rek_bank = $data->rek_bank; }
     if ($data->rek_no) { $user->rek_no = $data->rek_no; }
     if ($data->rek_nama) { $user->rek_nama = $data->rek_nama; }
+    if ($data->tgl_daftar) { $user->tgl_daftar = $data->tgl_daftar; }
+    if ($data->expired) { $user->expired = $data->expired; }
     $user->save();
     return ['update' => $user, 'user' => $this->user($data)['user']];
   }

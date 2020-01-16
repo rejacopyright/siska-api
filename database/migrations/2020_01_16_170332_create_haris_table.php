@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePengajarsTable extends Migration
+class CreateHarisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreatePengajarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pengajar', function (Blueprint $table) {
+        Schema::create('hari', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('pengajar_id')->nullable();
-            $table->bigInteger('admin_id')->nullable();
-            $table->bigInteger('kelas_id')->nullable();
-            $table->bigInteger('mapel_id')->nullable();
-            $table->integer('status')->nullable();
+            $table->integer('hari_id')->nullable();
+            $table->string('nama')->nullable();
+            $table->integer('libur')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreatePengajarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengajar');
+        Schema::dropIfExists('hari');
     }
 }

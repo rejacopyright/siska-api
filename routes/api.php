@@ -47,12 +47,18 @@ Route::group(["middleware" => "auth:admin-api"], function(){
   Route::post('sdm/user/update', 'sdm\user_c@update');
   Route::post('sdm/user/update_img', 'sdm\user_c@update_img');
   Route::post('sdm/user/delete', 'sdm\user_c@delete');
-  // SDM Pengajar
-  Route::get('pengajar', 'sdm\pengajar_c@pengajar');
-  Route::get('pengajar/select', 'sdm\pengajar_c@pengajar_select');
-  Route::post('pengajar/store', 'sdm\pengajar_c@store');
-  Route::post('pengajar/update', 'sdm\pengajar_c@update');
-  Route::post('pengajar/delete', 'sdm\pengajar_c@delete');
+  // MAPEL Pengajar
+  Route::get('pengajar', 'mapel\pengajar_c@pengajar');
+  Route::get('pengajar/select', 'mapel\pengajar_c@pengajar_select');
+  Route::post('pengajar/store', 'mapel\pengajar_c@store');
+  Route::post('pengajar/update', 'mapel\pengajar_c@update');
+  Route::post('pengajar/delete', 'mapel\pengajar_c@delete');
+  // MAPEL Jadwal
+  Route::get('test/jadwal', 'mapel\jadwal_c@jadwal');
+  Route::get('test/jadwal/select', 'mapel\jadwal_c@jadwal_select');
+  Route::post('test/jadwal/store', 'mapel\jadwal_c@store');
+  Route::post('test/jadwal/update', 'mapel\jadwal_c@update');
+  Route::post('test/jadwal/delete', 'mapel\jadwal_c@delete');
   // SISWA
   Route::get('siswa/nis', 'siswa\siswa_c@nis');
   Route::get('siswa/detail/{siswa_id}', 'siswa\siswa_c@detail');
