@@ -21,6 +21,10 @@ class kelas_c extends Controller
     });
     return compact('kelas', 'page');
   }
+  function kelas_detail($kelas_id){
+    $kelas = kelas::where('kelas_id', $kelas_id)->first();
+    return compact('kelas');
+  }
   function kelas_select(Request $data){
     $kelas = kelas::orderBy('nama');
     if ($data->q) { $kelas = $kelas->where('nama', 'like', '%'.$data->q.'%'); }

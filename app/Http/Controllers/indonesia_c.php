@@ -7,6 +7,7 @@ use App\indonesia\desa;
 use App\indonesia\kecamatan;
 use App\indonesia\kota;
 use App\indonesia\provinsi;
+use App\hari;
 
 class indonesia_c extends Controller
 {
@@ -55,5 +56,8 @@ class indonesia_c extends Controller
   }
   function bulan(Request $data){
     return 'bulan';
+  }
+  function hari_detail($hari_id){
+    return hari::where('hari_id', $hari_id)->first();
   }
 }

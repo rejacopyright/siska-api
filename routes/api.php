@@ -54,11 +54,13 @@ Route::group(["middleware" => "auth:admin-api"], function(){
   Route::post('pengajar/update', 'mapel\pengajar_c@update');
   Route::post('pengajar/delete', 'mapel\pengajar_c@delete');
   // MAPEL Jadwal
-  Route::get('test/jadwal', 'mapel\jadwal_c@jadwal');
-  Route::get('test/jadwal/select', 'mapel\jadwal_c@jadwal_select');
-  Route::post('test/jadwal/store', 'mapel\jadwal_c@store');
-  Route::post('test/jadwal/update', 'mapel\jadwal_c@update');
-  Route::post('test/jadwal/delete', 'mapel\jadwal_c@delete');
+  Route::get('mapel/jadwal', 'mapel\jadwal_c@jadwal');
+  Route::get('mapel/jadwal/check', 'mapel\jadwal_c@jadwal_check');
+  Route::post('mapel/jadwal/store', 'mapel\jadwal_c@store');
+  Route::post('mapel/jadwal/update', 'mapel\jadwal_c@update');
+  Route::post('mapel/jadwal/update/start', 'mapel\jadwal_c@update_start');
+  Route::post('mapel/jadwal/update/end', 'mapel\jadwal_c@update_end');
+  Route::post('mapel/jadwal/delete', 'mapel\jadwal_c@delete');
   // SISWA
   Route::get('siswa/nis', 'siswa\siswa_c@nis');
   Route::get('siswa/detail/{siswa_id}', 'siswa\siswa_c@detail');
@@ -70,6 +72,7 @@ Route::group(["middleware" => "auth:admin-api"], function(){
   Route::post('siswa/update', 'siswa\siswa_c@update');
   // KELAS
   Route::get('kelas', 'kelas\kelas_c@kelas');
+  Route::get('kelas/detail/{kelas_id}', 'kelas\kelas_c@kelas_detail');
   Route::get('kelas/select', 'kelas\kelas_c@kelas_select');
   Route::post('kelas/store', 'kelas\kelas_c@store');
   Route::post('kelas/update', 'kelas\kelas_c@update');
@@ -111,6 +114,7 @@ Route::group(["middleware" => "auth:admin-api"], function(){
   Route::post('perpustakaan/pinjam/extend', 'perpustakaan\perpustakaan_c@perpustakaan_pinjam_extend');
   Route::post('perpustakaan/pinjam/extend/undo', 'perpustakaan\perpustakaan_c@perpustakaan_pinjam_extend_undo');
 
+  Route::get('hari/{hari_id}', 'indonesia_c@hari_detail');
   Route::get('bulan', 'indonesia_c@bulan');
   Route::get('lokasi', 'indonesia_c@lokasi');
   Route::get('provinsi', 'indonesia_c@provinsi');
