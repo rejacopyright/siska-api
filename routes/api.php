@@ -113,6 +113,10 @@ Route::group(["middleware" => "auth:admin-api"], function(){
   Route::post('perpustakaan/pinjam/update', 'perpustakaan\perpustakaan_c@perpustakaan_pinjam_update');
   Route::post('perpustakaan/pinjam/extend', 'perpustakaan\perpustakaan_c@perpustakaan_pinjam_extend');
   Route::post('perpustakaan/pinjam/extend/undo', 'perpustakaan\perpustakaan_c@perpustakaan_pinjam_extend_undo');
+  // KEUANGAN
+  Route::get('keuangan/spp', 'keuangan\spp_c@spp');
+  Route::post('keuangan/spp/store', 'keuangan\spp_c@store');
+  Route::post('keuangan/spp/update', 'keuangan\spp_c@update');
 
   Route::get('hari/{hari_id}', 'indonesia_c@hari_detail');
   Route::get('bulan', 'indonesia_c@bulan');
