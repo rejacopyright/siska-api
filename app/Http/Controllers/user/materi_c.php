@@ -14,13 +14,13 @@ use App\Admin;
 class materi_c extends Controller
 {
   function materi(Request $data, $kelas_id){
-    $mapel_id = pengajar::where('kelas_id', $kelas_id)->distinct('mapel_id')->pluck('mapel_id')->all();
+    $mapel_id = pengajar::where('kelas_id', $kelas_id)->select('mapel_id')->pluck('mapel_id')->all();
     if ($data->mapel_id) {
       $mapel_id = $data->mapel_id;
     }
     $mapel = mapel::whereIn('mapel_id', $mapel_id)->get();
-    $silabus_id = silabus::where('kelas_id', $kelas_id)->whereIn('mapel_id', $mapel_id)->distinct('silabus_id')->pluck('silabus_id')->all();
-    $rpp_id = rpp::whereIn('silabus_id', $silabus_id)->distinct('rpp_id')->pluck('rpp_id')->all();
+    $silabus_id = silabus::where('kelas_id', $kelas_id)->whereIn('mapel_id', $mapel_id)->select('silabus_id')->pluck('silabus_id')->all();
+    $rpp_id = rpp::whereIn('silabus_id', $silabus_id)->select('rpp_id')->pluck('rpp_id')->all();
     $page = materi::whereIn('rpp_id', $rpp_id)->orderBy('updated_at', 'DESC');
     if ($data->q) {
       $page->where('nama', 'like', '%'.$data->q.'%');

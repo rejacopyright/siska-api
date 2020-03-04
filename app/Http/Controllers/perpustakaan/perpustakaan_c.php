@@ -244,8 +244,8 @@ class perpustakaan_c extends Controller
   // PERPUSTAKAAN
   function perpustakaan_pinjam(Request $data){
     $page = pinjam::orderBy('created_at', 'DESC');
-    $siswa_id = siswa::where('nis', 'like', '%'.$data->q.'%')->orWhere('nama', 'like', '%'.$data->q.'%')->distinct('siswa_id')->pluck('siswa_id')->all();
-    $perpustakaan_id = perpustakaan::where('judul', 'like', '%'.$data->q.'%')->distinct('perpustakaan_id')->pluck('perpustakaan_id')->all();
+    $siswa_id = siswa::where('nis', 'like', '%'.$data->q.'%')->orWhere('nama', 'like', '%'.$data->q.'%')->select('siswa_id')->pluck('siswa_id')->all();
+    $perpustakaan_id = perpustakaan::where('judul', 'like', '%'.$data->q.'%')->select('perpustakaan_id')->pluck('perpustakaan_id')->all();
     if ($data->q) {
       $page->whereIn('siswa_id', $siswa_id)->orWhere(function($query) use ($perpustakaan_id){
         $query->whereIn('perpustakaan_id', $perpustakaan_id);

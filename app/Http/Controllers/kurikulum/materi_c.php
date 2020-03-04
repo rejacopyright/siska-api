@@ -14,7 +14,7 @@ class materi_c extends Controller
     if ($data->q) {
       $page->where('nama', 'like', '%'.$data->q.'%');
     }
-    $page = $page->paginate(10);
+    $page = $page->select(['materi_id', 'rpp_id', 'nama'])->paginate(10);
     $materi = $page->map(function($i){
       $i['kelas'] = $i->rpp->silabus->kelas->nama;
       $i['semester'] = $i->rpp->silabus->semester->nama;
